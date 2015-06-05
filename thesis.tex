@@ -1,0 +1,41 @@
+\documentclass[draft=true, twoside]{scrbook}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman, english]{babel}
+
+\usepackage{acronym}
+\usepackage[backend=biber, style=alphabetic, autocite=inline, urldate=long]{biblatex}
+\usepackage{booktabs}
+\usepackage[autostyle]{csquotes}
+\usepackage{hyperref}
+\usepackage{url}
+
+\addbibresource{thesis.bib}
+
+\begin{document}
+\frontmatter
+\title{Distributed Simulation Based on RESTful Microservices}
+\author{Helge Eichhorn}
+\maketitle
+
+\selectlanguage{ngerman}
+\include{preface-editor}
+\include{preface-author}
+\selectlanguage{english}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\include{acronyms}
+
+\mainmatter
+\include{1-introduction}
+\include{2-state-of-the-art}
+\include{3-requirements}
+\include{4-concept}
+\include{5-implementation}
+\include{6-validation}
+\include{7-outlook}
+\include{8-conclusion}
+\printbibliography[heading=bibintoc]
+\appendix
+\end{document}
