@@ -1,4 +1,13 @@
-\documentclass[draft=true, twoside]{scrbook}
+\documentclass[
+    draft=true,
+    fontsize=10pt,
+    headings=big,
+    DIV=calc,
+    twoside,
+    paper=a5,
+    pagesize=auto
+]{scrbook}
+
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman, english]{babel}
 
@@ -8,16 +17,25 @@
 \usepackage[autostyle]{csquotes}
 \usepackage{hyperref}
 \usepackage{url}
+\usepackage{blindtext}
+\usepackage[
+    author={Helge Joachim Eichhorn, M.Sc.},
+    title={Distributed Service-Oriented Architecture for Model-Based Engineering},
+    city=Mainz,
+    year=2016,
+    received={1. Oktober 2016},
+    exam={1. November 2016},
+    accepted=false
+]{disstitle}
 
 \addbibresource{thesis.bib}
+\pagestyle{headings}
 
 \begin{document}
 \frontmatter
-\title{Distributed Service-Oriented Architecture for Model-Based Engineering}
-\author{Helge Eichhorn}
-\maketitle
-
 \selectlanguage{ngerman}
+
+\makedisstitle
 \include{preface-editor}
 \include{preface-author}
 \selectlanguage{english}

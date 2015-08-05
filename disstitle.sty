@@ -1,0 +1,75 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{disstitle}[2015/08/05 Dissertation Title Package]
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+    family=DISS,
+    prefix=DISS@
+}
+
+\DeclareBoolOption{accepted}
+\DeclareStringOption[\the\year]{year}
+\DeclareStringOption[Max Mustermann, M.Sc.]{author}
+\DeclareStringOption[Integriertes Datenmodell für gefährliches Halbwissen]{title}
+\DeclareStringOption[Prof. Dr.-Ing. Otto Berndt]{reviewer}
+\DeclareStringOption[\today]{received}
+\DeclareStringOption[\today]{exam}
+\DeclareStringOption[Darmstadt]{city}
+\ProcessKeyvalOptions*
+
+\newcommand{\makedisstitle}{
+    \begin{titlepage}
+    \begin{center}
+        \vspace*{3\baselineskip}
+        \Large
+        \textbf{\textsf{\DISS@title}}\\
+        \normalsize
+
+        \vspace*{2\baselineskip}
+        \ifDISS@accepted
+            Vom Fachbereich Maschinenbau\\
+        \else
+            Dem Fachbereich Maschinenbau\\
+        \fi
+        an der Technischen Universität Darmstadt\\
+        \vspace*{\baselineskip}
+        zur\\
+        \vspace*{\baselineskip}
+        Erlangung des Grades eines Doktor-Ingenieurs (Dr.-Ing.)\\
+        \ifDISS@accepted
+            genehmigte\\
+        \else
+            vorgelegte\\
+        \fi
+        \vspace*{\baselineskip}
+            \textsc{Dissertation}\\
+        \vspace*{\baselineskip}
+        \ifDISS@accepted
+            vorgelegt von\\
+        \else
+            eingereicht von\\
+        \fi
+
+        \vspace*{2\baselineskip}
+        \large
+        \textbf{\DISS@author}\\
+        \normalsize
+        \vspace*{2\baselineskip}
+        aus \DISS@city\\
+        \vspace*{3\baselineskip}
+    \end{center}
+    \begin{tabular}{ll}
+        Berichterstatter:   & Prof.~Dr.-Ing.~Reiner~Anderl\\
+        Mitberichterstatter:& \DISS@reviewer\\
+
+        Tag der Einreichung:& \DISS@received\\
+        Tag der müdlichen Prüfung:& \DISS@exam\\
+    \end{tabular}
+    \vspace*{2\baselineskip}
+    \begin{center}
+        Darmstadt \DISS@year\\
+        D17
+    \end{center}
+\end{titlepage}
+}
+\endinput
