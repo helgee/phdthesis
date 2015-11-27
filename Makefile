@@ -1,8 +1,6 @@
-.PHONY: clean
+.PHONY: clean all
 
-all: thesis.pdf
-
-thesis.pdf: thesis.tex
+all:
 	latexmk -pdf -pdflatex="pdflatex -interactive=nonstopmode" thesis.tex
 
 clean:
