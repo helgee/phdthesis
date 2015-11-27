@@ -1,5 +1,5 @@
 \documentclass[
-    draft=true,
+    % draft=true,
     fontsize=10pt,
     headings=big,
     DIV=calc,
@@ -13,12 +13,18 @@
 
 \usepackage{acronym}
 \usepackage[backend=biber, style=alphabetic, autocite=inline, urldate=long]{biblatex}
+\usepackage{blindtext}
 \usepackage{booktabs}
 \usepackage[autostyle]{csquotes}
-\usepackage{hyperref}
+\usepackage[%
+    % bookmarks,
+    pdftitle={Service-Oriented Architecture for Distributed Cyber-Physical Systems},
+    pdfauthor={Helge Eichhorn}
+]{hyperref}
+\usepackage{todonotes}
 \usepackage{url}
-\usepackage{blindtext}
-\usepackage[
+\usepackage{xspace}
+\usepackage[%
     author={Helge Joachim Eichhorn, M.Sc.},
     title={Service-Oriented Architecture for Distributed Cyber-Physical Systems},
     city=Mainz,
@@ -27,6 +33,9 @@
     exam={1. November 2016},
     accepted=false
 ]{disstitle}
+
+% Commands
+\newcommand{\topic}{Service-Oriented Architecture for Distributed Cyber-Physical Systems\xspace}
 
 \addbibresource{thesis.bib}
 \pagestyle{headings}

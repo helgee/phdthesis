@@ -1,4 +1,19 @@
 \chapter{Introduction}
+\label{sec:introduction}
+Within this dissertation a novel service-oriented, hybrid computing architecture is developed to improve the adaptibility and extend the functionality of distributed \ac{cps}.
+
+% short problem description
+\todo{short problem description}
+
+% short solution description
+It aims to structure data analysis and simulation software into computational pipelines 
+
+This introduction describes the motivation for this dissertation and the statement of the problem in section \ref{sec:motivation}.
+Based on the problem statement the scientific objective of this dissertation is defined in section \ref{sec:scientific-objective}.
+The chapter concludes in section \ref{sec:outline} with an outline of the remainder of this dissertation.
+
+\section{Motivation}
+\label{sec:motivation}
 The continuous miniaturization of computing devices has led to an age of ubiquituous computing.
 Fast wireless data connections through mobile networks have become the norm in industrialized countries.
 Mobile phones have turned into always-connected, powerful special purpose computers.
@@ -23,7 +38,16 @@ These include predictive maintenance, efficiency improvements, better quality co
 Since \ac{cpps} need to react in real-time to outside events and the computing power of their embedded processors is constrained, processing the generated data at the source is generally not feasible.
 The software systems within a CPPS-equipped factory must also be able to adapt to rapid changes in the manufacturing environment.
 
+\section{Scientific Objective}
+\label{sec:scientific-objective}
 Within this dissertation a service-oriented architecture for the ad-hoc creation and deployment of data analysis pipelines on heterogenuous computing hardware is developed.
 It consists of container-based microservices connected through asynchronous and synchronous communication channels deployed to hybrid clusters containing nodes within private and public cloud computing environments.
 They collect data from \ac{cpps} sensors, analyze it, and use the results to monitor and modify the parameters of the production systems.
+
+\section{Outline}
+\label{sec:outline}
+The scientific examination of the subject of this dissertation as described above begins with a discussion of the state of the art in \ac{cps} and distributed computing in chapter \ref{sec:state-of-the-art}.
+
+In chapter \ref{sec:requirements} the requirements for the \topic are developed based on the state of the art.
+
 
