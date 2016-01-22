@@ -15,14 +15,20 @@
 \usepackage{acronym}
 \usepackage{afterpage}
 \usepackage[backend=biber, style=alphabetic, autocite=inline, urldate=long]{biblatex}
+\usepackage{blindtext}
 \usepackage{booktabs}
 \usepackage[autostyle]{csquotes}
-\usepackage{hyperref}
+\usepackage[%
+    pdftitle={An Information Model for Space Mission Design},
+    pdfauthor={Helge Eichhorn}
+]{hyperref}
+\usepackage{todonotes}
 \usepackage{url}
 \usepackage{blindtext}
 \usepackage{tikz}
 \usepackage{tikz-uml}
-\usepackage[
+\usepackage{xspace}
+\usepackage[%
     author={Helge Joachim Eichhorn, M.Sc.},
     title={An Information Model for Space Mission Design},
     city=Mainz,
@@ -39,7 +45,11 @@
 \renewcommand*\dictumwidth{.8\linewidth}
 \renewcommand*\dictumauthorformat[1]{--- #1}
 \renewcommand*\dictumrule{}
+
 \tikzumlset{fill class=white, font=\sffamily}
+
+% Commands
+\newcommand{\topic}{An Information Model for Space Mission Design\xspace}
 
 \addbibresource{thesis.bib}
 \pagestyle{headings}
