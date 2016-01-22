@@ -15,10 +15,12 @@
 \DeclareStringOption[\today]{received}
 \DeclareStringOption[\today]{exam}
 \DeclareStringOption[Darmstadt]{city}
+\DeclareStringOption[Famous Person]{quoteauthor}
+\DeclareStringOption{quote}
 \ProcessKeyvalOptions*
 
 \newcommand{\makedisstitle}{
-    \begin{titlepage}
+\begin{titlepage}
     \begin{center}
         \vspace*{3\baselineskip}
         \Large
@@ -71,5 +73,14 @@
         D17
     \end{center}
 \end{titlepage}
+\ifx\DISS@quote\@empty
+\else
+    \thispagestyle{empty}
+    \null
+    \newpage
+    \thispagestyle{empty}
+    \vspace*{8\baselineskip}
+    \dictum[\DISS@quoteauthor]{\DISS@quote}
+\fi
 }
 \endinput

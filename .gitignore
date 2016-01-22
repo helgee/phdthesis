@@ -12,3 +12,4 @@ build/
 *.bbl
 *.bcf
 *.blg
+*.out
