@@ -34,10 +34,12 @@ def get_wordcounts():
 
 def log_wordcounts(con):
     counts = get_wordcounts()
-    filecols = " ".join(["{} int,".format(f) for f in files])
+    filecols = ",".join(["{} int".format(f.split(".")[0]) for f in files])
     countcols = ",".join([str(counts[f.split(".")[0]]) for f in files])
     with con:
+        print("create table if not exists Words (date datetime, {})".format(filecols))
         con.execute("create table if not exists Words (date datetime, {})".format(filecols))
+        print("insert into Words values (datetime(), {})".format(countcols))
         con.execute("insert into Words values (datetime(), {})".format(countcols))
 
 if __name__ == '__main__':
