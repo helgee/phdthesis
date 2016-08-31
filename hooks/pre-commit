@@ -2,7 +2,9 @@
 
 import re
 import subprocess
+import sqlite3
 
+db = "words.sqlite3"
 files = [
     'concept.tex',
     'conclusion.tex',
@@ -30,5 +32,17 @@ def get_wordcounts():
             counts.update({'total': int(l.split()[-1])})
     return counts
 
+def log_wordcounts(con):
+    counts = get_wordcounts()
+    filecols = " ".join(["{} int,".format(f) for f in files])
+    countcols = ",".join([str(counts[f.split(".")[0]]) for f in files])
+    with con:
+        con.execute("create table if not exists Words (date datetime, {})".format(filecols))
+        con.execute("insert into Words values (datetime(), {})".format(countcols))
+
 if __name__ == '__main__':
     print(get_wordcounts())
+    con = sqlite3.connect(db)
+    log_wordcounts(con)
+    con.close()
+    subprocess.call(["git", "add", db])
