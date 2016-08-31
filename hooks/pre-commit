@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 
+import datetime
 import re
-import subprocess
 import sqlite3
+import subprocess
 
 db = "words.sqlite3"
 files = [
-    'concept.tex',
-    'conclusion.tex',
-    'implementation.tex',
     'introduction.tex',
-    'outlook.tex',
-    'requirements.tex',
     'state.tex',
+    'requirements.tex',
+    'concept.tex',
+    'implementation.tex',
     'validation.tex',
+    'outlook.tex',
+    'conclusion.tex',
     ]
 reg = re.compile(r'(^\s+[0-9]+\+[0-9]+\+[0-9]+)(.*)(\s[a-z]+\.tex$)')
 
@@ -32,19 +33,20 @@ def get_wordcounts():
             counts.update({'total': int(l.split()[-1])})
     return counts
 
-def log_wordcounts(con):
-    counts = get_wordcounts()
+def log_wordcounts(con, counts):
     filecols = ",".join(["{} int".format(f.split(".")[0]) for f in files])
     countcols = ",".join([str(counts[f.split(".")[0]]) for f in files])
     with con:
-        print("create table if not exists Words (date datetime, {})".format(filecols))
         con.execute("create table if not exists Words (date datetime, {})".format(filecols))
-        print("insert into Words values (datetime(), {})".format(countcols))
         con.execute("insert into Words values (datetime(), {})".format(countcols))
 
 if __name__ == '__main__':
-    print(get_wordcounts())
+    counts = get_wordcounts()
+    dt = datetime.datetime.now()
+    print("Current word counts on {}".format(datetime.datetime.strftime(dt, "%b %d, %Y %H:%M")))
+    for f in files:
+        print("{}: {}".format(f.capitalize(), counts[f.split(".")[0]]))
     con = sqlite3.connect(db)
-    log_wordcounts(con)
+    log_wordcounts(con, counts)
     con.close()
     subprocess.call(["git", "add", db])
