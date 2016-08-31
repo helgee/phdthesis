@@ -48,5 +48,15 @@ if __name__ == '__main__':
         print("{}: {}".format(f.capitalize(), counts[f.split(".")[0]]))
     con = sqlite3.connect(db)
     log_wordcounts(con, counts)
+    cur = con.execute("select * from Words where strftime('%Y-%m-%d', date) = strftime('%Y-%m-%d','now') order by date desc limit 1;")
+    count_today = cur.fetchone()
+    cur = con.execute("select * from Words where strftime('%Y-%m-%d', date) = strftime('%Y-%m-%d', date('now','-1 day')) order by date desc limit 1;")
+    count_yesterday = cur.fetchone()
+    print(count_today)
+    print(count_yesterday)
+    if count_today and count_yesterday:
+        total = sum(count_today[1:]) - sum(count_yesterday[1:])
+        action = "added" if total > 0 else "deleted"
+        print("\nTotal words {} since yesterday: {}".format(action, total))
     con.close()
     subprocess.call(["git", "add", db])
