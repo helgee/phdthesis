@@ -46,6 +46,7 @@ if __name__ == '__main__':
     print("Current word counts on {}\n".format(datetime.datetime.strftime(dt, "%d %b %Y %H:%M")))
     for f in files:
         print("{}: {}".format(f.capitalize(), counts[f.split(".")[0]]))
+    print("\nTotal: {}".format(counts["total"]))
     con = sqlite3.connect(db)
     log_wordcounts(con, counts)
     cur = con.execute("select * from Words where strftime('%Y-%m-%d', date) = strftime('%Y-%m-%d','now') order by date desc limit 1;")
