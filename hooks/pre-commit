@@ -43,7 +43,7 @@ def log_wordcounts(con, counts):
 if __name__ == '__main__':
     counts = get_wordcounts()
     dt = datetime.datetime.now()
-    print("Current word counts on {}".format(datetime.datetime.strftime(dt, "%d %b %Y %H:%M")))
+    print("Current word counts on {}\n".format(datetime.datetime.strftime(dt, "%d %b %Y %H:%M")))
     for f in files:
         print("{}: {}".format(f.capitalize(), counts[f.split(".")[0]]))
     con = sqlite3.connect(db)
@@ -52,8 +52,6 @@ if __name__ == '__main__':
     count_today = cur.fetchone()
     cur = con.execute("select * from Words where strftime('%Y-%m-%d', date) = strftime('%Y-%m-%d', date('now','-1 day')) order by date desc limit 1;")
     count_yesterday = cur.fetchone()
-    print(count_today)
-    print(count_yesterday)
     if count_today and count_yesterday:
         total = sum(count_today[1:]) - sum(count_yesterday[1:])
         action = "added" if total > 0 else "deleted"
