@@ -8,6 +8,10 @@ The requirements profile defined in the following chapter serves to guide the de
 \section{Use Cases}
 \label{sec:use-cases}
 
+By identifying the use cases for \ac{mbsmd} the scope of the concept which is developed in this thesis is defined.
+The functional and non-functional requirements are then derived from these.
+An overview of the considered use cases is given in the diagram in figure \ref{fig:use-cases} which uses the \ac{uml} notation.
+
 \input{uml/usecases}
 
 \subsection{System Actors}
@@ -15,9 +19,17 @@ The requirements profile defined in the following chapter serves to guide the de
 The involved system actors as shown in figure \ref{fig:use-cases} are the mission analyst, the software developer, the systems engineer, and the architecture analyst.
 \begin{itemize}
     \item \emph{Mission Analyst:}
+        The mission analyst defines the trajectory and maneuver strategy of the space mission such that it fulfills its objectives and operational requirements in an optimal way.
+        Within \ac{mbsmd} the mission analyst develops the mission model.
+        \Heshe uses the model as the basis for mission-specific numerical analysis tools which refine the model and determine derived quantities.
     \item \emph{Software Developer:}
+        Within \ac{mbsmd} the development of mission-independent software tools can be outsourced to an external software developer.
+        The universal mission model enables \himher to develop inter-operable software solutions.
     \item \emph{Systems Engineer:}
+        The systems engineer integrates the mission model into the model of the complete space system.
+        \Heshe uses the mission model to derive performance characteristics and ensures that the mission design fulfills the requirements of the overall system.
     \item \emph{Architecture Analyst:}
+        The architecture analyst uses collections of mission models to compare the performance of space missions the share an architectural framework or between mission families with different architectures.
 \end{itemize}
 
 \subsection{System Boundaries}
