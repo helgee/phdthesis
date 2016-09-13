@@ -1,10 +1,7 @@
 using Mustache
 
 template = mt"""\documentclass{scrartcl}
-\usepackage[utf8]{inputenc}
-\usepackage{xspace}
-\usepackage{tikz}
-\usepackage{../tikz-uml}
+\input{../preamble}
 \input{../uml}
 \input{../macros}
 \begin{document}
