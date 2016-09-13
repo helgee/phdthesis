@@ -1,0 +1,28 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlsystem}{Model-Based Space Mission Design}
+            \umlusecase[name=design]{Model Mission Design}
+            \umlusecase[name=develop, y=-2]{Develop Software Tools}
+            \umlusecase[name=validate, y=-4]{Validate Algorithms}
+            \umlusecase[name=derive, y=-5.5, width=3cm]{Derive Mission Performance}
+            \umlusecase[name=compare, y=-8, width=3cm]{Compare Mission Performance}
+        \end{umlsystem}
+        \umlactor[x=-5, y=-2]{Mission Analyst}
+        \umlactor[x=-5, y=-6]{Systems Engineer}
+        \umlactor[x=-5, y=-8]{Architecture Analyst}
+        \umlactor[x=-5, y=-4]{Software Developer}
+        \umlinclude{compare}{derive}
+        \umlinclude{design}{develop}
+        \umlextend{validate}{develop}
+        \umlassoc{Mission Analyst}{design}
+        \umlassoc{Mission Analyst}{develop}
+        \umlassoc{Mission Analyst}{validate}
+        \umlassoc{Systems Engineer}{derive}
+        \umlassoc{Architecture Analyst}{compare}
+        \umlassoc{Software Developer}{develop}
+        \umlassoc{Software Developer}{validate}
+    \end{tikzpicture}
+    \caption{Considered use cases in UML notation}
+    \label{fig:use-cases}
+\end{figure}
