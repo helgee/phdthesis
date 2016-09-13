@@ -1,0 +1,26 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlpackage}{Numbers}
+            \umlsimpleclass[type=abstract]{Number}
+            \umlclass[x=-3, y=-3, template={T : Number}]{Parameter}{
+                initial : T \\
+                value : T \\
+                upper : T \\
+                lower : T \\
+            }{}
+            \umlclass[x=2, y=-3]{Constant}{
+                value : Float64 \\
+                accuracy : Float64 \\
+                name : String \\
+                source : String \\
+            }{}
+
+            \umlinherit[geometry=|-]{Parameter}{Number}
+            \umlinherit[geometry=|-]{Constant}{Number}
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{UML class diagram for the \code{Numbers} package.}
+    \label{fig:numbers-uml}
+\end{figure}
+
