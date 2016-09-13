@@ -13,3 +13,4 @@ build/
 *.bcf
 *.blg
 *.out
+uml/diagrams.tex
