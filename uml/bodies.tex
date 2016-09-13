@@ -1,16 +1,42 @@
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
-        \umlsimpleclass[type=abstract]{CelestialBody}
-        \umlclass[x=-3, y=-2]{Sun}{}{}
-        \umlclass[x=0, y=-2]{Planet}{}{}
-        \umlclass[x=0, y=-5]{Satellite}{}{}
-        \umlclass[x=3, y=-2]{MinorBody}{}{}
+        \begin{umlpackage}{CelestialBodies}
+            \umlclass[type=abstract]{CelestialBody}{%
+                name : String \\
+                parent : String \\
+                % mu : Constant \\
+                radii : Constant[1..*] \\
+                deviation : Constant \\
+                elevation : Constant \\
+                depression : Constant \\
+                }{}
+            \umlsimpleclass[x=-3, y=-2]{Sun}
+            \umlsimpleclass[x=0, y=2]{Planet}
+            \umlsimpleclass[x=0, y=4]{Satellite}
+            \umlsimpleclass[x=3, y=-2]{MinorBody}
+            % \umlrequiredinterface[interface=Ephemeris, distance=5cm]{CelestialBody}
+            \umlclass[type=abstract, y=-10]{AbstractRotation}{%
+                phi0 : Constant \\
+                phi1 : Constant \\
+                phi2 : Constant \\
+                c : Constant[1..*] \\
+                theta0 : Constant[1..*] \\
+                theta1 : Constant[1..*] \\
+            }{}
+            \umlsimpleclass[x=-3, y=-12]{RightAscension}
+            \umlsimpleclass[x=0, y=-12]{Declination}
+            \umlsimpleclass[x=3, y=-12]{Rotation}
+            \umlinherit{RightAscension}{AbstractRotation}
+            \umlinherit{Declination}{AbstractRotation}
+            \umlinherit{Rotation}{AbstractRotation}
 
-        \umlinherit[geometry=|-]{Sun}{CelestialBody}
-        \umlinherit{Planet}{CelestialBody}
-        \umlinherit[geometry=|-]{MinorBody}{CelestialBody}
-        \umlaggreg[mult1=1, mult2=0..*]{Planet}{Satellite}
+
+            \umlinherit{Sun}{CelestialBody}
+            \umlinherit{Planet}{CelestialBody}
+            \umlinherit{MinorBody}{CelestialBody}
+            \umlaggreg[mult1=1, mult2=0..*]{Planet}{Satellite}
+        \end{umlpackage}
     \end{tikzpicture}
     \caption{UML diagram for the \code{CelestialBodies} package.}
     \label{fig:celestial-bodies-uml}
