@@ -2,7 +2,7 @@
     \centering
     \begin{tikzpicture}
         \begin{umlpackage}{CelestialBodies}
-            \umlclass[type=abstract]{CelestialBody}{%
+            \umlclass[x=0, y=0, type=abstract]{CelestialBody}{%
                 name : String \\
                 parent : String \\
                 % mu : Constant \\
@@ -11,31 +11,64 @@
                 elevation : Constant \\
                 depression : Constant \\
                 }{}
-            \umlsimpleclass[x=-3, y=-2]{Sun}
-            \umlsimpleclass[x=0, y=2]{Planet}
-            \umlsimpleclass[x=0, y=4]{Satellite}
-            \umlsimpleclass[x=3, y=-2]{MinorBody}
-            % \umlrequiredinterface[interface=Ephemeris, distance=5cm]{CelestialBody}
-            \umlclass[type=abstract, y=-10]{AbstractRotation}{%
+            \umlsimpleclass[x=-4, y=0]{Sun}
+            \umlsimpleclass[x=-4, y=2]{MinorBody}
+            \umlsimpleclass[x=0, y=4]{Planet}
+            \umlsimpleclass[x=-4, y=4]{Satellite}
+            \umlclass[type=abstract, y=-5]{AbstractRotation}{%
                 phi0 : Constant \\
                 phi1 : Constant \\
                 phi2 : Constant \\
                 c : Constant[1..*] \\
                 theta0 : Constant[1..*] \\
                 theta1 : Constant[1..*] \\
-            }{}
-            \umlsimpleclass[x=-3, y=-12]{RightAscension}
-            \umlsimpleclass[x=0, y=-12]{Declination}
-            \umlsimpleclass[x=3, y=-12]{Rotation}
-            \umlinherit{RightAscension}{AbstractRotation}
+            }{%
+                angle(date) \\
+                rate(date) \\
+            }
+            \umlsimpleclass[x=-4, y=-4]{RightAscension}
+            \umlsimpleclass[x=-4, y=-5]{Declination}
+            \umlsimpleclass[x=-4, y=-6]{Rotation}
+
+            \umlclass[type=interface, x=4, y=-5]{Ephemeris}{}{%
+                position(date) \\
+                velocity(date) \\
+            }
+            \umlimport[geometry=-|]{CelestialBody}{Ephemeris}
+
+
+
+            \umlinherit[geometry=-|-]{RightAscension}{AbstractRotation}
             \umlinherit{Declination}{AbstractRotation}
-            \umlinherit{Rotation}{AbstractRotation}
+            \umlinherit[geometry=-|-]{Rotation}{AbstractRotation}
 
 
-            \umlinherit{Sun}{CelestialBody}
+            \umlinherit[geometry=-|-]{Sun}{CelestialBody}
+            \umlinherit[geometry=-|]{MinorBody}{CelestialBody}
+            \umlinherit[geometry=|-|, arm1=-1cm]{Satellite}{CelestialBody}
             \umlinherit{Planet}{CelestialBody}
-            \umlinherit{MinorBody}{CelestialBody}
             \umlaggreg[mult1=1, mult2=0..*]{Planet}{Satellite}
+            \umlcompo[mult1=1, mult2=3]{CelestialBody}{AbstractRotation}
+
+            \umlsimpleclass[type=abstract, x=4, y=4]{AbstractModel}
+            \umlaggreg[mult1=1..*, mult2=1..*, anchor1=60, geometry=|-|, arm1=1.4cm, pos2=2.8]{CelestialBody}{AbstractModel}
+            % AtmosphereModel
+            \umlclass[type=abstract, x=4, y=1]{AtmosphereModel}{}{%
+                density(height) \\
+                pressure(height) \\
+                temperature(height) \\
+            }
+            \umlinherit[anchors=east and east]{AtmosphereModel}{AbstractModel}
+
+            % GravityModel
+            \umlclass[type=abstract, x=4, y=-1]{GravityModel}{}{%
+            }
+            \umlinherit[geometry=--, anchors=east and east]{GravityModel}{AbstractModel}
+
+            % RadiationModel
+            \umlclass[type=abstract, x=4, y=-3]{RadiationModel}{}{%
+            }
+            \umlinherit[anchors=east and east, geometry=-|-, arm1=1cm]{RadiationModel}{AbstractModel}
         \end{umlpackage}
     \end{tikzpicture}
     \caption{UML diagram for the \code{CelestialBodies} package.}
