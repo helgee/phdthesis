@@ -3,20 +3,21 @@
     \begin{tikzpicture}
         \begin{umlpackage}{Numbers}
             \umlsimpleclass[type=abstract]{Number}
-            \umlclass[x=-3, y=-3, template={T : Real}]{Parameter}{
-                initial : T \\
-                value : T \\
-                upper : T \\
-                lower : T \\
+            \umlclass[x=-2, y=-2.5]{Variable}{
+                initial : Float64 \\
+                value : Float64 \\
+                upper : Float64 \\
+                lower : Float64 \\
+                name : String \\
             }{}
-            \umlclass[x=2, y=-3]{Constant}{
+            \umlclass[x=2, y=-2.5]{Constant}{
                 value : Float64 \\
                 accuracy : Float64 \\
                 name : String \\
                 source : String \\
             }{}
 
-            \umlinherit[geometry=|-]{Parameter}{Number}
+            \umlinherit[geometry=|-]{Variable}{Number}
             \umlinherit[geometry=|-]{Constant}{Number}
         \end{umlpackage}
     \end{tikzpicture}

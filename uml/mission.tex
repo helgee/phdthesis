@@ -1,0 +1,147 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\minusone}{3.5}
+        \pgfmathsetmacro{\one}{3}
+        \pgfmathsetmacro{\two}{\one + 3}
+        \pgfmathsetmacro{\three}{\two + 1}
+        \pgfmathsetmacro{\four}{\three + 1}
+        \begin{umlpackage}{Missions}
+            \umlclass{Mission}{
+                name : String \\
+                operator : String \\
+            }{
+            }
+            \umlsimpleclass[right=2.4cm of Mission.center]{Sequence}%{
+                % initial : Float64 \\
+                % value : Float64 \\
+                % upper : Float64 \\
+                % lower : Float64 \\
+                % name : String \\
+            % }{}
+            \umlsimpleclass[right=2.3cm of Sequence.center]{Segment}%{
+                % value : Float64 \\
+                % accuracy : Float64 \\
+                % name : String \\
+                % source : String \\
+            % }{}
+            \umlclass[right=1.6cm of Segment.center, type=abstract]{Propagator}{
+            }{
+                trajectory()
+            }
+            \umlclass[above=1.2cm of Propagator.center, type=abstract]{Constraint}{
+            }{
+                evaluate()
+            }
+
+            \umlclass[above=\minusone cm of Mission.center, type=abstract, anchor=center]{Solver}{
+                }{
+                optimise()
+            }
+
+            \umlsimpleclass[above=\minusone cm of Segment.center, type=abstract, anchor=center]{AbstractArc}
+            \umlclass[above=\minusone cm of Sequence.center, anchor=center]{ThrustArc}{
+                alpha : Polynomial \\
+                beta : Polynomial \\
+            }{
+                thrustvector(thrust) \\
+            }
+            \umlsimpleclass[above=\minusone cm of Propagator.center, anchor=center]{Coast}
+
+            % \pgfmathsetmacro{\ans}{\one + 1}
+            \umlclass[below=\one cm of Segment.center, type=abstract, anchor=center]{AbstractNode}{
+                t : Epoch \\
+                }{
+            }
+            \umlsimpleclass[below=\four cm of Propagator.center]{Pass}
+            \umlsimpleclass[below=\three cm of Propagator.center, anchor=center]{Patch}
+            \umlclass[below=5.5cm of Propagator.center, anchor=center]{InitialOrbit}{
+                s0 : State
+            }{
+            }
+            \umlclass[below=\one cm of Propagator.center, anchor=center]{TargetOrbit}{
+                sma : Float64 \\
+                ecc : Float64 \\
+                inc : Float64 \\
+                node : Float64 \\
+                peri : Float64 \\
+                ano : Float64 \\
+            }{
+            }
+            \umlsimpleclass[below=\four cm of Segment.center]{Separation}
+            \umlsimpleclass[below=\four cm of Sequence.center]{Rendezvouz}
+            \umlclass[below=\four cm of Mission.center]{Launch}{
+                longitude : Float64 \\
+                latitude : Float64 \\
+                altitude : Float64 \\
+            }{
+            }
+
+            % \umlclass[below=\one cm of Sequence.center, type=abstract, anchor=center]{AbstractSpacecraft}{
+            %     name : String
+            %     }{
+            % }
+            % \umlclass[below=\one cm of Mission.center, anchor=center]{SimpleSpacecraft}{
+            %     name : String \\
+            %     fuel : Float64 \\
+            %     drymass : Float64 \\
+            %     dragcoeff : Float64 \\
+            %     dragarea : Float64 \\
+            %     reflectcoeff : Float64 \\
+            %     srparea : Float64 \\
+            % }{}
+            \umlclass[below=\one cm of Sequence.center, anchor=center]{Spacecraft}{
+                name : String \\
+            }{}
+            \umlclass[below=\two cm of Sequence.center, anchor=center]{Module}{
+                name : String \\
+                drymass : Float64 \\
+                dragcoeff : Float64 \\
+                dragarea : Float64 \\
+                reflectcoeff : Float64 \\
+                srparea : Float64 \\
+            }{}
+            \umlclass[below=\two cm of Mission.center, anchor=center]{Tank}{
+                fuel : Float64 \\
+            }{
+                flowrate() \\
+            }
+            \umlclass[below=\one cm of Mission.center, anchor=center]{Thruster}
+            {}{
+                thrust()
+            }
+
+            \umlaggreg[geometry=--, mult1=1, mult2=1..*]{Mission}{Sequence}
+            \umlaggreg[geometry=--, mult1=1, mult2=1..*]{Sequence}{Segment}
+            \umlaggreg[geometry=--, mult1=1, mult2=1]{Segment}{Propagator}
+
+            \umlaggreg[mult1=1, mult2=0..*]{Mission}{Solver}
+
+            \umlaggreg[geometry=|-, anchors=40 and west, mult1=1, mult2=0..*]{Segment}{Constraint}
+
+            \umlcompo[geometry=--, mult1=1, mult2=1]{Segment}{AbstractArc}
+            \umlinherit[geometry=--]{ThrustArc}{AbstractArc}
+            \umlinherit[geometry=--]{Coast}{AbstractArc}
+
+            \umlaggreg[geometry=--, mult1=1..2, mult2=1..2]{Segment}{AbstractNode}
+            \umlinherit[geometry=|-|, arm1=0.25cm, anchor1=north]{Pass}{AbstractNode}
+            \umlinherit[geometry=-|]{Patch}{AbstractNode}
+            \umlinherit[geometry=-|]{InitialOrbit}{AbstractNode}
+            \umlinherit[geometry=--]{TargetOrbit}{AbstractNode}
+            \umlinherit[geometry=--]{Separation}{AbstractNode}
+            \umlinherit[geometry=|-|, arm1=0.25cm, anchor1=north]{Rendezvouz}{AbstractNode}
+            \umlinherit[geometry=|-|, arm1=0.25cm, anchor1=north]{Launch}{AbstractNode}
+
+            % \umlaggreg[geometry=--, mult1=1, mult2=1]{Sequence}{AbstractSpacecraft}
+            \umlaggreg[geometry=--, mult1=1, mult2=1]{Sequence}{Spacecraft}
+            % \umlinherit[geometry=--]{Spacecraft}{AbstractSpacecraft}
+            % \umlinherit[geometry=--]{SimpleSpacecraft}{AbstractSpacecraft}
+            \umlcompo[geometry=--, mult1=1, mult2=1..*]{Spacecraft}{Module}
+            \umlaggreg[geometry=--, mult1=1, mult2=0..*]{Module}{Tank}
+            \umlaggreg[mult1=1, mult2=0..*]{Module}{Thruster}
+            \umlassoc{Tank}{Thruster}
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{UML class diagram for the \code{Missions} package.}
+    \label{fig:mission-uml}
+\end{figure}

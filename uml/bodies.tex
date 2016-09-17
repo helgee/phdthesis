@@ -4,17 +4,18 @@
         \begin{umlpackage}{CelestialBodies}
             \umlclass[x=0, y=0, type=abstract]{CelestialBody}{%
                 name : String \\
-                parent : String \\
+                % parent : String \\
                 % mu : Constant \\
                 radii : Constant[1..*] \\
                 deviation : Constant \\
                 elevation : Constant \\
                 depression : Constant \\
                 }{}
-            \umlsimpleclass[x=-4, y=0]{Sun}
-            \umlsimpleclass[x=-4, y=2]{MinorBody}
+            \umlsimpleclass[x=-5, y=0]{Sun}
+            \umlsimpleclass[x=-5, y=2]{MinorBody}
+            \umlaggreg[angle2=150, angle1=170, loopsize=0.75cm]{MinorBody}{MinorBody}
             \umlsimpleclass[x=0, y=4]{Planet}
-            \umlsimpleclass[x=-4, y=4]{Satellite}
+            \umlsimpleclass[x=-5, y=4]{Satellite}
             \umlclass[type=abstract, y=-5]{AbstractRotation}{%
                 phi0 : Constant \\
                 phi1 : Constant \\
@@ -26,15 +27,15 @@
                 angle(date) \\
                 rate(date) \\
             }
-            \umlsimpleclass[x=-4, y=-4]{RightAscension}
-            \umlsimpleclass[x=-4, y=-5]{Declination}
-            \umlsimpleclass[x=-4, y=-6]{Rotation}
+            \umlsimpleclass[x=-5, y=-4]{RightAscension}
+            \umlsimpleclass[x=-5, y=-5]{Declination}
+            \umlsimpleclass[x=-5, y=-6]{Rotation}
 
-            \umlclass[type=interface, x=4, y=-5]{Ephemeris}{}{%
+            \umlclass[type=interface, x=4, y=0]{Ephemeris}{}{%
                 position(date) \\
                 velocity(date) \\
             }
-            \umlimport[geometry=-|]{CelestialBody}{Ephemeris}
+            \umlimport{CelestialBody}{Ephemeris}
 
 
 
@@ -43,32 +44,32 @@
             \umlinherit[geometry=-|-]{Rotation}{AbstractRotation}
 
 
-            \umlinherit[geometry=-|-]{Sun}{CelestialBody}
+            \umlinherit{Sun}{CelestialBody}
             \umlinherit[geometry=-|]{MinorBody}{CelestialBody}
             \umlinherit[geometry=|-|, arm1=-1cm]{Satellite}{CelestialBody}
             \umlinherit{Planet}{CelestialBody}
             \umlaggreg[mult1=1, mult2=0..*]{Planet}{Satellite}
             \umlcompo[mult1=1, mult2=3]{CelestialBody}{AbstractRotation}
 
-            \umlsimpleclass[type=abstract, x=4, y=4]{AbstractModel}
-            \umlaggreg[mult1=1..*, mult2=1..*, anchor1=60, geometry=|-|, arm1=1.4cm, pos2=2.8]{CelestialBody}{AbstractModel}
-            % AtmosphereModel
-            \umlclass[type=abstract, x=4, y=1]{AtmosphereModel}{}{%
-                density(height) \\
-                pressure(height) \\
-                temperature(height) \\
-            }
-            \umlinherit[anchors=east and east]{AtmosphereModel}{AbstractModel}
-
-            % GravityModel
-            \umlclass[type=abstract, x=4, y=-1]{GravityModel}{}{%
-            }
-            \umlinherit[geometry=--, anchors=east and east]{GravityModel}{AbstractModel}
-
-            % RadiationModel
-            \umlclass[type=abstract, x=4, y=-3]{RadiationModel}{}{%
-            }
-            \umlinherit[anchors=east and east, geometry=-|-, arm1=1cm]{RadiationModel}{AbstractModel}
+            % \umlsimpleclass[type=abstract, x=4, y=4]{AbstractModel}
+            % \umlaggreg[mult1=1..*, mult2=1..*, anchor1=60, geometry=|-|, arm1=1.4cm, pos2=2.8]{CelestialBody}{AbstractModel}
+            % % AtmosphereModel
+            % \umlclass[type=abstract, x=4, y=1]{AtmosphereModel}{}{%
+            %     density(height) \\
+            %     pressure(height) \\
+            %     temperature(height) \\
+            % }
+            % \umlinherit[anchors=east and east]{AtmosphereModel}{AbstractModel}
+            %
+            % % GravityModel
+            % \umlclass[type=abstract, x=4, y=-1]{GravityModel}{}{%
+            % }
+            % \umlinherit[geometry=--, anchors=east and east]{GravityModel}{AbstractModel}
+            %
+            % % RadiationModel
+            % \umlclass[type=abstract, x=4, y=-3]{RadiationModel}{}{%
+            % }
+            % \umlinherit[anchors=east and east, geometry=-|-, arm1=1cm]{RadiationModel}{AbstractModel}
         \end{umlpackage}
     \end{tikzpicture}
     \caption{UML diagram for the \code{CelestialBodies} package.}

@@ -1,8 +1,18 @@
 using Mustache
 
-template = mt"""\documentclass{scrartcl}
+template = mt"""\documentclass[
+% draft=true,
+fontsize=10pt,
+headings=big,
+chapterprefix=true,
+DIV=calc,
+twoside,
+paper=a5,
+pagesize=auto,
+BCOR=15mm
+]{scrartcl}
+\usepackage{../tikz-uml}
 \input{../preamble}
-\input{../uml}
 \input{../macros}
 \begin{document}
 {{#texfiles}}
