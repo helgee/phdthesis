@@ -1,0 +1,34 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\minusone}{3.5}
+        \pgfmathsetmacro{\one}{3}
+        \pgfmathsetmacro{\two}{\one + 3}
+        \pgfmathsetmacro{\three}{\two + 1}
+        \pgfmathsetmacro{\four}{\three + 1}
+        \begin{umlpackage}{Optimisers}
+            \umlclass[type=abstract]{Optimiser}{
+                name : String \\
+                method : String \\
+            }{
+                optimise()
+            }
+            \umlclass[right=2.4cm of Mission.center]{Parameter}{
+                name : String \\
+                value : Float64 \\
+                % initial : Float64 \\
+                % upper : Float64 \\
+                % lower : Float64 \\
+            }{}
+            % \umlsimpleclass[right=2.3cm of Sequence.center]{Segment}%{
+                % value : Float64 \\
+                % accuracy : Float64 \\
+                % name : String \\
+                % source : String \\
+            % }{}
+            \umlaggreg[mult1=1, mult2=0..*]{Optimiser}{Parameter}
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{UML class diagram for the \code{Optimisers} package.}
+    \label{fig:optimisation-uml}
+\end{figure}

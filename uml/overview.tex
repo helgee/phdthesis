@@ -2,8 +2,23 @@
     \centering
     \begin{tikzpicture}
         \begin{umlpackage}{KosmosML}
+            \umlemptypackage{Missions}
+            \umlemptypackage[below=1cm of Missions]{Optimisers}
+            \umlemptypackage[below right=1cm and 1cm of Missions]{Propagators}
+            \umlemptypackage[below right=2.5cm and 1cm of Missions]{Trajectories}
+            \umlemptypackage[right=1cm of Missions]{Numbers}
+            \umlemptypackage[below=2.5cm of Missions]{CelestialBodies}
+
+            % \umlimport{Numbers}{Missions}
+            \umlimport[anchors=40 and -38]{Optimisers}{Missions}
+            \umlimport[anchors=west and east]{Propagators}{Missions}
+            \umlimport{CelestialBodies}{Trajectories}
+            \umlimport[anchors=35 and west]{CelestialBodies}{Propagators}
+            % \umlimport{Propagators}{Optimisers}
+            \umlimport[anchors=38 and -40]{Trajectories}{Propagators}
+            % \umlimport{Trajectories}{Optimisers}
         \end{umlpackage}
     \end{tikzpicture}
-    \caption{UML package diagram for the KosmosML data model}
+    \caption{UML package diagram for the KosmosML data model.}
     \label{fig:overview-uml}
 \end{figure}

@@ -1,0 +1,59 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\minusone}{2}
+        \pgfmathsetmacro{\one}{2.5}
+        \pgfmathsetmacro{\two}{\one + 3}
+        \pgfmathsetmacro{\three}{\two + 1}
+        \pgfmathsetmacro{\four}{\three + 1}
+        \begin{umlpackage}{Propagators}
+            \umlclass[type=abstract]{Propagator}{}{
+                propagate()
+            }
+            \umlclass[type=abstract, right=2.4cm of Mission.center]{AbstractModel}{
+                name : String \\
+                source : String \\
+                datafiles : String[0..*] \\
+
+                % initial : Float64 \\
+                % value : Float64 \\
+                % upper : Float64 \\
+                % lower : Float64 \\
+                % name : String \\
+            }{evaluate(State)}
+            \umlsimpleclass[below=\one cm of Propagator.center]{AtmosphereModel}
+            \umlsimpleclass[below=\one cm of AbstractModel.center]{RadiationModel}
+            \umlsimpleclass[left=2cm of Propagator.center]{Discontinuity}
+            \umlsimpleclass[below=\one cm of Discontinuity.center]{GravityModel}
+            \umlclass[above=\minusone cm of AbstractModel.center]{Parameter}{
+                name : String \\
+                value : Float64 \\
+                % initial : Float64 \\
+                % upper : Float64 \\
+                % lower : Float64 \\
+            }{}
+            \umlclass[type=abstract,above=\minusone cm of Discontinuity.center]{Event}{
+
+                time : Epoch
+            }{detect()}
+            \umlclass[type=abstract,above=\minusone cm of Propagator.center]{Update}{
+            }{apply()}
+            % \umlsimpleclass[right=2.3cm of Sequence.center]{Segment}%{
+                % value : Float64 \\
+                % accuracy : Float64 \\
+                % name : String \\
+                % source : String \\
+            % }{}
+            \umlaggreg[mult1=1, mult2=1]{Discontinuity}{Event}
+            \umlaggreg[mult1=1, mult2=1]{Discontinuity}{Update}
+            \umlaggreg[mult1=1, mult2=0..*]{Propagator}{Parameter}
+            \umlaggreg[mult1=1, mult2=1..*]{Propagator}{AbstractModel}
+            \umlaggreg[mult1=1, mult2=0..*]{Propagator}{Discontinuity}
+            \umlinherit[geometry=|-|]{GravityModel}{AbstractModel}
+            \umlinherit[geometry=|-|]{AtmosphereModel}{AbstractModel}
+            \umlinherit{RadiationModel}{AbstractModel}
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{UML class diagram for the \code{Propagators} package.}
+    \label{fig:propagators-uml}
+\end{figure}

@@ -1,0 +1,33 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\minusone}{3.5}
+        \pgfmathsetmacro{\one}{1}
+        \pgfmathsetmacro{\two}{\one + 1}
+        \pgfmathsetmacro{\three}{\two + 2}
+        \pgfmathsetmacro{\four}{\three + 1}
+        \begin{umlpackage}{Trajectories}
+            \umlsimpleclass[type=abstract]{AbstractState}
+            \umlclass[below=\one cm of AbstractState.center]{State}{
+                r : Float64[3] \\
+                v : Float64[3] \\
+                frame : String \\
+            }{
+            }
+            \umlclass[below=\two cm of State.center]{Epoch}{
+                jd : Float64[2] \\
+                scale : String \\
+            }{
+            }
+            \umlsimpleclass[right=2cm of State.center]{Trajectory}
+            \umlsimpleclass[right=2cm of AbstractState.center]{CelestialBody}
+
+            \umlaggreg[mult1=1, mult2=1]{State}{Epoch}
+            \umlaggreg[mult1=1, mult2=1..*]{Trajectory}{State}
+            \umlaggreg[mult1=1, mult2=1, geometry=-|-, anchor1=40]{State}{CelestialBody}
+            \umlinherit{State}{AbstractState}
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{UML class diagram for the \code{Trajectories} package.}
+    \label{fig:trajectories-uml}
+\end{figure}
