@@ -3,30 +3,46 @@
 
 The concept for \topic is developed in the following chapter based on the state of the art as presented in chapter \ref{sec:state-of-the-art} and the requirements as defined in chapter \ref{sec:requirements}.
 
-\section{Overview of the Concept}
+\section{The Kosmos Modeling Language (KosmosML)}
+\label{sec:kosmosml}
+
+\subsection{The Mission Graph}
+\label{sec:mission-graph}
+
+\section{The KosmosML Data Model}
+\label{sec:kosmosml-data-model}
+
+\subsection{Overview of the Data Model}
+\label{sec:overview-data-model}
+
 \input{uml/overview}
 
-\subsection{Notation}
+\subsection{Numerical Constants and Parameters Submodel}
+\label{sec:numbers-submodel}
 
-\section{Modelling Numerical Constants and Parameters}
 \input{uml/numbers}
 
-\section{Modelling Spacecraft}
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}
-        \umlclass[x=0, y=0, template={Wurst}]{State}{}{}
-    \end{tikzpicture}
-    \caption{UML diagram for the State class.}
-    \label{fig:stateuml}
-\end{figure}
-
-\section{Modelling the Solar System Environment}
-
-\subsection{Modeling Celestial Bodies}
+\subsection{Celestial Bodies Submodel}
+\label{sec:celestial-bodies-submodel}
 
 \input{uml/bodies}
 
-\section{Modelling Mission Sequences}
+\subsection{Trajectories Submodel}
+\label{sec:trajectories-submodel}
 
-\section{Modelling Numerical Analyses}
+\input{uml/trajectories}
+
+\subsection{Propagators Submodel}
+\label{sec:propagators-submodel}
+
+\input{uml/propagators}
+
+\subsection{Optimisers Submodel}
+\label{sec:optimisers-submodel}
+
+\input{uml/optimisers}
+
+\subsection{Missions Submodel}
+\label{sec:missions-submodel}
+
+\input{uml/missions}
