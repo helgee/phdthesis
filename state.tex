@@ -1,19 +1,31 @@
 \chapter{State of the Art}
 \label{sec:state-of-the-art}
 
-\section{Digital Models}
-\label{sec:digital-models}
-\autocite{hinsen_computational_2014}
-\autocite{hinsen_scientific_2016}
-\citeauthor{sussman_role_2002} show that computation can aid the comprehension of the subject matter at hand \autocite{sussman_role_2002}.
+\section{Spacecraft Trajectory Optimisation}
+\label{sec:spacecraft-trajectory-optimisation}
+Spacecraft trajectory optimisation can be described as
+\begin{quote}
+    \ldots the determination of a trajectory for a spacecraft that satisfies specified initial and terminal conditions, that is conducting a required mission, while minimizing some quantity of importance \autocite[p. 1]{conway_problem_2014}.
+\end{quote}
 
-\section{Model-Based Engineering}
-\label{sec:model-based-engineering}
+These initial conditions are usually determined by the combination of initial orbit and spacecraft mass that the selected launch vehicle can achieve.
+Whereas the terminal conditions are the operational orbits around the Earth or other celestial bodies that the spacecraft is supposed to reach during its lifetime.
+While on an operational orbit and for most missions also during transit its trajectory must enable the spacecraft to fulfill its mission objectives and operational constraints.
+Mission objectives might be conducting observations and measurements with scientific instruments, providing communication services, or transporting humans safely through space.
+Regular opportunies for contact with the ground stations and mission control systems on Earth are common operational constraints.
 
-\subsection{Model-Based Systems Engineering}
-\label{sec:model-based-systems-engineering}
+The abovementioned quantities of importance are in most cases propellant consumption and transfer time.
+Since propellant accounts for a large percentage of the highly constrained initial launch mass every gram of propellant spared can be utilised for the payload of the spacecraft.
+The payload on the other hand is the reason that a space mission is conducted in the first place.
+More available mass means more room for instruments, transponders etc. and therefore improved mission performance.
+Hence, the objective is to \enquote{maximize the fraction of the spacecraft that is not devoted to propellant} \autocite[p. 1]{conway_problem_2014}.
 
-\subsection{Space Mission Analysis and Design}
+Because it is generally possible to find a trajectory with decreased propellant consumption by increasing the transfer time an upper time limit needs to be imposed \autocite[p. 1]{conway_problem_2014}.
+This is especially important for interplanetary missions where transfer times can approach decades.
+The \ac{esa} spacecraft Rosetta for example was launched on March 4, 2004 and only reached its target orbit 10 years later on August 6, 2014 \autocite{glassmeier_rosetta_2007}.
+Thus the optimal trajectory is usually a trade-off between propellant requirements and transfer time.
+
+\section{Space Mission Analysis and Design}
 \label{sec:space-mission-analysis-and-design}
 \citeauthor{wertz_space_1999} divide the \ac{smad} process into four phases with several steps \autocite[p. 2]{wertz_space_1999}:
 \begin{itemize}
@@ -41,3 +53,25 @@
             \item Allocate requirements to system elements
         \end{enumerate}
 \end{itemize}
+
+\section{Locating a Spacecraft in Space-Time}
+\section{The Solar System Environment}
+\label{sec:solar-system-environment}
+\section{Trajectory Propagation}
+\label{sec:trajectory-propagation}
+\section{Trajectory Optimisation}
+\label{sec:trajectoty-optimisation}
+
+\section{Digital Models}
+\label{sec:digital-models}
+\autocite{hinsen_computational_2014}
+\autocite{hinsen_scientific_2016}
+\citeauthor{sussman_role_2002} show that computation can aid the comprehension of the subject matter at hand \autocite{sussman_role_2002}.
+
+\section{Model-Based Engineering}
+\label{sec:model-based-engineering}
+
+\subsection{Model-Based Systems Engineering}
+\label{sec:model-based-systems-engineering}
+
+
