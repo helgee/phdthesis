@@ -1,6 +1,10 @@
 \chapter{State of the Art}
 \label{sec:state-of-the-art}
 
+In this chapter the state of the art in spacecraft trajectory optimisation is discussed.
+Section~\ref{sec:spacecraft-trajectory-optimisation} gives a general introduction to \sto before introducing the mathematical formulation of the \sto problem and the common solution methods.
+In section~\ref{sec:software-systems-for-spacecraft-trajectory-optimisation} 
+
 \section{Spacecraft Trajectory Optimisation}
 \label{sec:spacecraft-trajectory-optimisation}
 Spacecraft trajectory optimisation can be described as
@@ -17,13 +21,30 @@ Regular opportunies for contact with the ground stations and mission control sys
 The abovementioned quantities of importance are in most cases propellant consumption and transfer time.
 Since propellant accounts for a large percentage of the highly constrained initial launch mass every gram of propellant spared can be utilised for the payload of the spacecraft.
 The payload on the other hand is the reason that a space mission is conducted in the first place.
-More available mass means more room for instruments, transponders etc. and therefore improved mission performance.
+More available mass means more room for instruments, transponders etc.\ and therefore improved mission performance.
 Hence, the objective is to \enquote{maximize the fraction of the spacecraft that is not devoted to propellant} \autocite[p. 1]{conway_problem_2014}.
 
 Because it is generally possible to find a trajectory with decreased propellant consumption by increasing the transfer time an upper time limit needs to be imposed \autocite[p. 1]{conway_problem_2014}.
 This is especially important for interplanetary missions where transfer times can approach decades.
 The \ac{esa} spacecraft Rosetta for example was launched on March 4, 2004 and only reached its target orbit 10 years later on August 6, 2014 \autocite{glassmeier_rosetta_2007}.
 Thus the optimal trajectory is usually a trade-off between propellant requirements and transfer time.
+
+\subsection{The Trajectory Optimisation Problem}
+\label{sec:trajectory-optimisation-problem}
+
+In the following section the mathematical defintion of the trajectory optimisation problem as proposed by \citeauthor{betts_survey_1998} is discussed \autocite[pp. 1-2]{betts_survey_1998}.
+
+\subsection{Solution Methods for the Trajectory Optimisation Problem}
+\label{sec:solution-methods-trajectory-optimisation-problem}
+
+Due to the complexity of the problem when realistical boundary conditions
+
+optimal control
+
+\section{Software Systems for Spacecraft Trajectory Optimisation}
+\label{sec:software-systems-for-spacecraft-trajectory-optimisation}
+
+\autocite{conway_elements_2014}
 
 \section{Space Mission Analysis and Design}
 \label{sec:space-mission-analysis-and-design}
@@ -73,5 +94,4 @@ Thus the optimal trajectory is usually a trade-off between propellant requiremen
 
 \subsection{Model-Based Systems Engineering}
 \label{sec:model-based-systems-engineering}
-
 
