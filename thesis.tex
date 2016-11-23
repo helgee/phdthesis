@@ -1,5 +1,5 @@
 \documentclass[
-    % draft=true,
+    draft=true,
     fontsize=10pt,
     headings=big,
     chapterprefix=true,
@@ -42,17 +42,17 @@
 \tableofcontents
 \listoffigures
 \listoftables
-\include{acronyms}
+\input{acronyms}
 
 \mainmatter
-\include{introduction}
-\include{state}
-\include{requirements}
-\include{concept}
-\include{implementation}
-\include{validation}
-\include{outlook}
-\include{conclusion}
+\input{introduction}
+\input{state}
+\input{requirements}
+\input{concept}
+\input{implementation}
+\input{validation}
+\input{outlook}
+\input{conclusion}
 \printbibliography[heading=bibintoc]
 \appendix
 \end{document}

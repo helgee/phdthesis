@@ -34,6 +34,44 @@ Thus the optimal trajectory is usually a trade-off between propellant requiremen
 
 In the following section the mathematical defintion of the trajectory optimisation problem as proposed by \citeauthor{betts-survey-1998} is discussed \autocite[pp. 1-2]{betts-survey-1998}.
 
+A general trajectory optimisation problem can be partioned in distinct phases as shown in equation~\ref{eq:phase-variables}.
+For each phase $k$ the dynamics of the system are described by the vector of state variables $\vect{y}$ and the vector of control variables $\vect{u}$.
+The state vector as well as the control vector are functions of the independent variable $t$, which in many cases is time.
+$t_0^k$ marks the beginning and $t_1^k$ the end of phase $k$.
+For some problems the dynamics might also be dependent on a vector of fixed parameters $\vect{p}$.
+
+\begin{equation}
+    \vect{z}^k = \begin{bmatrix}
+            \vect{y}(t) \\
+            \vect{u}(t) \\
+            \vect{p}
+        \end{bmatrix} \quad \text{with} \quad \begin{cases}
+            \vect{y} \in \mathbb{R}^{n_y} \\
+            \vect{u} \in \mathbb{R}^{n_u} \\
+            \vect{p} \in \mathbb{R}^{n_p} \\
+            t_0^k \leq t \leq t_1^k
+        \end{cases}
+    \label{eq:phase-variables}
+\end{equation}
+
+The evolution of the system state within each phase is described by the \emph{equations of motions}, which will be discussed in detail in section~\ref{sec:equations-of-motion}.
+They are a set of \acp{ode} of the form:
+
+\begin{equation}
+    \vect{\dot{y}} = \vect{f}(t, \vect{y}(t), \vect{u}(t), \vect{p})
+    \label{eq:equations-of-motion}
+\end{equation}
+
+The initial values for the equations of motion at the beginning of a certain phase 
+
+
+This phase-based approach accomodates the variable system dynamics and constraints of complex trajectory optimisation problems.
+
+\subsection{Equations of Motion}
+\label{sec:equations-of-motion}
+
+
+
 \subsection{Solution Methods for the Trajectory Optimisation Problem}
 \label{sec:solution-methods-trajectory-optimisation-problem}
 
@@ -44,7 +82,7 @@ optimal control
 \section{Software Systems for Spacecraft Trajectory Optimisation}
 \label{sec:software-systems-for-spacecraft-trajectory-optimisation}
 
-\autocite{conway-elements-2014}
+\autocite{ocampo-elements-2014}
 
 \section{Space Mission Analysis and Design}
 \label{sec:space-mission-analysis-and-design}
