@@ -13,4 +13,5 @@ build/
 *.bcf
 *.blg
 *.out
+*.synctex.gz
 uml/diagrams.tex
