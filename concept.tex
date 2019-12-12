@@ -3,6 +3,31 @@
 
 The concept for \topic is developed in the following chapter based on the state of the art as presented in chapter \ref{sec:state-of-the-art} and the requirements as defined in chapter \ref{sec:requirements}.
 
+\section{Overview of the Concept}
+\label{sec:overview-concept}
+
+\section{UMLxMD: UML Extension for Multiple Dispatch}
+\label{sec:umlxmd}
+As discussed in chapter \ref{sec:multiple-dispatch}, using multiple dispatch as the central programming paradigm for an astrodynamics software system offers multiple benefits and is central to this concept.
+While it is possible to describe the structure of such a system with a standard UML class diagram, ambiguities might be introduced.
+Hence, this thesis proposes a small extension to UML which is based on stereotyping.
+
+Many programming languages that feature multiple dispatch such as Julia (see chapter \ref{sec:julia}) are object-oriented in the sense that every entity is treated as an object.
+They do not use classes, though.\footnote{Java on the other hand which heavily features classes and is thus considered an object-oriented language distinguishes between objects and primitives.}
+Like other programming languages that have been developed during the last two decades such as Go\todo{citation needed} or Rust\todo{citation needed} they do not bundle data structures and behaviour together into classes but keep them separated into \emph{composite types} and \emph{generic functions}.
+\subsection{Composite Types}
+\label{sec:composite-types}
+\input{uml/struct}
+\input{uml/parametric}
+\subsection{Generic Functions}
+\label{sec:generic-functions}
+\input{uml/function}
+\subsection{UMLxMD Example}
+\label{sec:umlxmd-example}
+To illustrate the use of \ac{umlxmd}, a simple model for numbers with associated \ac{si} units is shown in figure \ref{fig:si-example}.
+
+\input{uml/unit-example}
+
 \section{The Kosmos Modeling Language (KosmosML)}
 \label{sec:kosmosml}
 

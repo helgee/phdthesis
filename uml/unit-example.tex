@@ -1,0 +1,19 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{umlpackage}{SIUnits}
+        \umlclass[type=struct, template={T <: Number}]{UnitNumber}{
+            value : T \\
+            unit : Symbol \\
+        }{}
+        \umlclass[below=2 cm of UnitNumber.center, type=function]{+}{}{
+            (UnitNumber, T) where T <: Number \\
+            (T, UnitNumber) where T <: Number \\
+            ... \\
+        }
+        \end{umlpackage}
+    \end{tikzpicture}
+    \caption{\ac{umlxmd} example for an SI unit number package.}
+    \label{fig:si-example}
+\end{figure}
+
