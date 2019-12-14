@@ -18,8 +18,28 @@ They do not use classes, though.\footnote{Java on the other hand which heavily f
 Like other programming languages that have been developed during the last two decades such as Go\todo{citation needed} or Rust\todo{citation needed} they do not bundle data structures and behaviour together into classes but keep them separated into \emph{composite types} and \emph{generic functions}.
 \subsection{Composite Types}
 \label{sec:composite-types}
+A composite data type is a data type that is constructed from other data types.\ct
+This thesis follows the convention of the C-family of programming languages in calling composite types \enquote{structures} which is commonly abbreviated as \enquote{struct}.\ct
+The equivalent in class-based object-oriented languages would be a class which only has attributes and no methods.
+This is called a \enquote{data class} in some languages\ct since it only specifies a data structure and no behaviour.
+Figure \ref{fig:struct-uml} shows an \ac{umlxmd} diagram for a \emph{struct}.
 \input{uml/struct}
+The upper section contains the name of the composite type which is a noun and written in camel case\footnote{All words are capitalised without spaces inbetween.} by convention.
+To distinguish the \emph{struct} model from a standard \ac{uml} class the \code{<<struct>>} stereotype is added to the type name.
+
+The middle section contains the list of attributes or fields that constitute the composite type together with their associated data types, e.g.~\code{value1} is of type \code{Type}.
+If the data type is omited for a field, it is assumed that the value has a dynamic type a runtime, e.g.~in Julia the field would be of type \code{Any}.
+While the lower section could be omitted in theory, it is more practical to leave it empty to ensure compatibility with standard \ac{uml} modelling software tools where this may not be possible.
+
+Some multiple dispatch programming languages also support parametric composite types.
+Within the composite type definition one or more type parameters are introduced which allow to have one generic definition for families of different types.
+Figure \ref{fig:parametric-uml} shows an \ac{umlxmd} diagram for a parametric composite type.
+The text in the box with the dashed border in the upper right corner signifies that \code{T} is a type parameter which is the set of all subtypes\footnote{The symbols \code{<:} form the subtype operator in Julia.} of the type \code{Number}.
 \input{uml/parametric}
+For the example in figure \ref{fig:parametric-uml} this means that \code{value} can be any kind of number while \code{Parametric} is still statically typed.
+For example, if \code{value} would be \code{1.0} the type of \code{value} would be \code{Float64} in Julia and the type of the wrapping \code{Parametric} struct would be \code{Parametric{Float64}}.
+If \code{value} would be \code{1} on the other hand, the type of \code{value} would be \code{Int64}\footnote{On a 64-bit machine.} and struct type would be \code{Parametric{Int64}}.
+
 \subsection{Generic Functions}
 \label{sec:generic-functions}
 \input{uml/function}

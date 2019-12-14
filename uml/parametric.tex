@@ -1,11 +1,11 @@
 \begin{figure}[ht]
     \centering
     \begin{tikzpicture}
-        \umlclass[type=struct, template={T}]{Struct}{
+        \umlclass[type=struct, template={T <: Number}]{Parametric}{
             value : T \\
         }{}
     \end{tikzpicture}
-    \caption{UML stereotype for parametric types.}
+    \caption{\ac{umlxmd} diagram for a parametric type.}
     \label{fig:parametric-uml}
 \end{figure}
 
