@@ -2,9 +2,12 @@
     \centering
     \begin{tikzpicture}
         \umlclass[type=struct]{Example}{
-            value1 : Type \\
+            value1 : TypeA \\
             value2 \\
-        }{}
+        }{
+            (TypeA, Any) \\
+            (TypeA) \\
+        }
     \end{tikzpicture}
     \caption{\ac{umlxmd} diagram for a composite type.}
     \label{fig:struct-uml}

@@ -29,7 +29,11 @@ To distinguish the \emph{struct} model from a standard \ac{uml} class the \code{
 
 The middle section contains the list of attributes or fields that constitute the composite type together with their associated data types, e.g.~\code{value1} is of type \code{Type}.
 If the data type is omited for a field, it is assumed that the value has a dynamic type a runtime, e.g.~in Julia the field would be of type \code{Any}.
-While the lower section could be omitted in theory, it is more practical to leave it empty to ensure compatibility with standard \ac{uml} modelling software tools where this may not be possible.
+
+The lower section describes additional constructor methods defined by the tuples of the types of their arguments.
+In this specific example, the type \code{Example} has the standard constructor with the signature \code{(TypeA, Any)} (i.e.~all fields of the composite type) and an additional constructor with signature \code{(TypeA)} which only takes a single argument and where the second field is computed in the constructor method.
+If no additional constructors are specified, the constructor section can be left empty and the existence of the standard constructor is assumed.
+Since it is possible to override the standard constructor in some languages, e.g.~Julia, it needs to be explicitly modelled if additional constructor methods are present.
 
 Some multiple dispatch programming languages also support parametric composite types.
 Within the composite type definition one or more type parameters are introduced which allow to have one generic definition for families of different types.
@@ -43,6 +47,7 @@ If \code{value} would be \code{1} on the other hand, the type of \code{value} wo
 \subsection{Generic Functions}
 \label{sec:generic-functions}
 \input{uml/function}
+While the middle section could be omitted in theory, it is more practical to leave it empty to ensure compatibility with standard \ac{uml} modelling software tools where this may not be possible.
 \subsection{UMLxMD Example}
 \label{sec:umlxmd-example}
 To illustrate the use of \ac{umlxmd}, a simple model for numbers with associated \ac{si} units is shown in figure \ref{fig:si-example}.
