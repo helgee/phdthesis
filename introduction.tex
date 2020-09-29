@@ -4,7 +4,14 @@ This dissertation develops a data-oriented software architecture for the simulat
 
 Simulations are an essential tool throughout the lifecycle of a space system.
 These range from simple astrodynamics simulations in the design phase to full operational simulators running emulated \ac{obsw} in the operational phases.
-The latter category are soft real-time systems that can by 
+Operational simulators are used to train spacecraft operators and validate control procedures by providing a digital twin of satellite.
+To provide realistic feedback they need to achieve high modelling fidelity while at the same time fulfilling soft real-time requirements.
+A simulator for a single spacecraft can easily use the available hardware resources on a high-performance commodity server to capacity.
+Simulating constellations of satellites such as the Galileo navigation constellation which will consist of 30 satellites when it is fully deployed requires distributing the simulation across several machines.\citeme
+Future constellation such as the Starlink constellation\citeme are planned to consist of tens of thousands of satellites and are thus called \enquote{megaconstellations}.
+Based on the performance characteristics of today's operational simulators, it is very likely that it will be prohibitively expensive to simulate a full megaconstellation with the current simulator technology.
+
+Another technology domain with similar performance requirements that also models physical environments are \ac{ris} such as \ac{vr} and \ac{ar} systems.
 
 \todo{short solution description}
 
